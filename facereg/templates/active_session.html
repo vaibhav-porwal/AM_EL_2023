@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block body %}
+<title>{{ session.classdetails.course_code }} Session</title>
+</head>
+<body>
+    <div>
+        <h4>Session: {{ session.classdetails }}</h4>
+        <h4>Date: {{ session.date }}</h4>
+        <br>
+        <a href={% url 'attendancescan' %} class="btn btn-success">Scan Students</a>
+        <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+        <a onclick="promptFunction()" class="btn btn-danger">Close Session</a>
+        <input id="link" value="{% url 'home' %}?close={{session.id}}" hidden></input>
+        <br><br>
+        <h3>Session Status</h3>
+        <table class="table table-bordered table-hover" style="font-size:16px; text-align:center;">
+            <tr class="table-dark" style="text-align:center; font-weight:bolder;">
+                <td>USN</td>
+                <td>Student Name</td>
+                <td>Entry Time</td>
+            </tr>
+            {% for p in presents %}
+            <tr class="table-success">
+                <td>{{ p.student.usn }}</td>
+                <td>{{ p.student.name }}</td>
+                <td>{{ p.timestamp }}</td>
+            </tr>
+            {% endfor %}
+            <tr class="table-warning" style="max-height:5px;">
+                <td><b>Not Yet Present</b></td>
+                {% comment %} <td>----</td>
+                <td>----</td> {% endcomment %}
+            </tr>
+            {% for a in a_list %}
+            <tr class="table-danger">
+                <td>{{a.usn}}</td>
+                <td>{{a.name}}</td>
+                <td>AB</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <script>
+        const link=document.getElementById('link');
+        function promptFunction(){
+            if (confirm("Are you sure?")){
+                location.replace(link.value);
+            }
+        }
+    </script>
+</body>
+{% endblock %}
