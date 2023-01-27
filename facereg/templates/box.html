@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block body %}
+<body>
+    {% if regform %}<h2>Student Registration</h2>{% endif %}
+    {% if message %}
+        <h3>{{ message }}</h3>
+    {% endif %}
+    {% if session %}
+        <h4>Session: {{ session.classdetails }}</h4>
+        <h4>Date: {{ session.date }}</h4>
+    {% endif %}
+    {% if path %}<img src="{% static path %}" /><br><br>{% endif %}
+    {% if regform %}
+        {% if similar_face %}
+            <h4>Face similar to: {{ similar_face.name }}</h4>
+            <h5>If already registered, <a href="/" class="btn btn-warning">skip</a></h5>
+            <h5>If not, Proceed to fill the form</h5>
+        {% endif %}
+        <form method="post" class="form-group">
+            {% csrf_token %}
+            {{ regform|crispy }}
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    {% endif %}
+    {% if student %}
+        <h5>You are: {{ student.name }} ({{ student.usn }})?
+        {% if already_present %} [Already Marked Present]{% endif %}
+        </h5>
+        <h5>{% if not_this_done %}{{ not_this_done }}{% endif %}</h5>
+
+        <button class="btn btn-outline-primary" {% if already_present %}disabled{% endif %}>
+            <a href="{% url 'attendancescan' %}?yesstudent={{student.usn}}">YES</a>
+        </button>
+
+        <button class="btn btn-outline-danger">
+            <a href="{% url 'attendancescan' %}?nostudent={{student.usn}}">NO</a>
+        </button>
+        
+        <li>Pressing Yes will mark your attendance</li>
+        <li>Pressing No will allow you to rescan your face</li>
+    {% endif %}
+    <br>
+    <a href="{% url 'attendancescan' %}" class="btn btn-primary">Continue Scanning</a>
+    <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+</body>
+{% endblock %}

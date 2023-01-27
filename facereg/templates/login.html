@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Login Form Example</title>
+  <link type="text/css" rel="stylesheet" href="{% static "style.css" %}?{% now " u"="" %}"=""/>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:400,700'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+    <div class="login-form">
+        <form method="post">
+            <div style="text-align:center; background-color: #ffaaaa;">
+            <h1>FACE-REG Portal</h1>
+            <br>
+            </div>
+            <br>
+            <h2 style="text-align:center;">Faculty Login</h2>
+        
+            <div class="content">
+                {% csrf_token %}
+                <div class="input-field">
+                    <input type="username" name="username" placeholder="Username" autocomplete="username" required id="id_username">
+                </div>
+                <div class="input-field">
+                    <input type="password" name="password" placeholder="Password" autocomplete="current-password" required id="id_password">
+                </div>
+                <a href="#" class="link">Forgot Your Password?</a>
+            </div>
+            <div class="action">
+            <button type="submit">Sign in</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
