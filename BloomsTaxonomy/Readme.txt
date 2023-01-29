@@ -1,5 +1,5 @@
 1.Run commands in backend folder 
-npm init
+npm install package.json
 node server.js
 2.Open the frontend index.html
 
