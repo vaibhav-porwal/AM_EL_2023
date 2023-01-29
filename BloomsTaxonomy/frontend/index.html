@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Blooms Taxonomy</h1>
+    <h2>Word to Level</h2>
+    <div class="container">
+      <form action="" onsubmit="return false">
+        <div class="row">
+          <div class="col-25">
+            <label for="fname">Enter the word </label>
+          </div>
+          <div class="col-75">
+            <input
+              onfocusout="wordToLevel()"
+              type="text"
+              id="word"
+              name="word"
+              placeholder="The word.."
+              onkeypress="return searchWordPress(event)"
+            />
+            <input
+              type="submit"
+              id="wordSubmit"
+              onclick="wordToLevel()"
+              onsubmit="wordToLevel()"
+            />
+          </div>
+        </div>
+      </form>
+      <div class="wordToLevel">
+        <div class="col-25">
+          <label for="fname">The level </label>
+        </div>
+        <div class="display" onclick="copyText1()" style="display: inline-flex;">
+          <p id="wordToLevel"  style="margin: 0px;">No word entered</p>
+          <img src="https://cdn-icons-png.flaticon.com/512/9320/9320504.png" style="padding-left: 10px; " width="15px" height="15px"/>
+        </div>
+        <span id="tooltiptext">Coppied!!</span>
+      </div>
+    </div>
+    <h2>Level to Word</h2>
+    <div class="container">
+      <form action="" onsubmit="return false">
+        <div class="row">
+          <div class="col-25">
+            <label for="fname">Enter the level </label>
+          </div>
+          <div class="col-75">
+            <input
+              onfocusout="levelToWord()"
+              type="text"
+              id="level"
+              name="level"
+              placeholder="The level..(bt1,bt2,bt3,bt4,bt5,bt6)"
+              onkeypress="return searchLevelPress(event)"
+            />
+            <input
+              type="submit"
+              id="levelSubmit"
+              onsubmit="levelToWord()"
+              onclick="levelToWord()"
+            />
+          </div>
+        </div>
+      </form>
+      <div class="wordToLevel">
+        <div class="col-25">
+          <label for="fname">The words </label>
+        </div>
+        <div class="col-75">
+          <p id="levelToWord" class="display">No level entered</p>
+        </div>
+      </div>
+    </div>
+    <h2>Insert Word to a level</h2>
+    <div class="container">
+      <form action="" id="insert" onsubmit="insertword()">
+        <div class="row">
+          <div class="col-25">
+            <label for="fname">Enter the level </label>
+          </div>
+          <div class="col-75">
+            <input
+              type="text"
+              id="ins-level"
+              name="level"
+              placeholder="The level..(bt1,bt2,bt3,bt4,bt5,bt6)"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="fname">Enter the word </label>
+          </div>
+          <div class="col-75">
+            <input
+              type="text"
+              id="ins-word"
+              name="word"
+              placeholder="The word"
+            />
+            <input
+              type="submit"
+              id="levelSubmit"
+              onsubmit="insertword()"
+              onclick="insertword()"
+            />
+          </div>
+        </div>
+      </form>
+      <!-- <div class="wordToLevel">
+        <div class="col-25">
+          <label for="fname">The words </label>
+        </div>
+        <div class="col-75">
+          <p id="levelToWord" class="display">No level entered</p>
+        </div>
+      </div> -->
+    </div>
+    <h2>Delet Word from a level</h2>
+    <div class="container">
+      <form action="" id="insert" onsubmit="deletword()">
+        <div class="row">
+          <div class="col-25">
+            <label for="fname">Enter the level </label>
+          </div>
+          <div class="col-75">
+            <input
+              type="text"
+              id="del-level"
+              name="level"
+              placeholder="The level..(bt1,bt2,bt3,bt4,bt5,bt6)"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="fname">Enter the word </label>
+          </div>
+          <div class="col-75">
+            <input
+              type="text"
+              id="del-word"
+              name="word"
+              placeholder="The word"
+            />
+            <input
+              type="submit"
+              id="levelSubmit"
+              onsubmit="deletword()"
+              onclick="deletword()"
+            />
+          </div>
+        </div>
+      </form>
+      <!-- <div class="wordToLevel">
+        <div class="col-25">
+          <label for="fname">The words </label>
+        </div>
+        <div class="col-75">
+          <p id="levelToWord" class="display">No level entered</p>
+        </div>
+      </div> -->
+    </div>
+    <div style="display: flex;justify-content: space-around;">
+      <div id="tables">
+        <div class="table-wrapper">
+          <table class="fl-table" id="bt1">
+              <thead>
+              <tr>
+                  <th>BT - 1</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <tbody>
+          </table>
+      </div>
+      <div class="table-wrapper">
+      <table class="fl-table" id="bt2">
+          <thead>
+          <tr>
+              <th>BT - 2</th>
+          </tr>
+          </thead>
+          <tbody>
+          
+          <tbody>
+      </table>
+  </div>
+  <div class="table-wrapper">
+    <table class="fl-table" id="bt3">
+        <thead>
+        <tr>
+            <th>BT - 3</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tbody>
+    </table>
+  </div>
+  <div class="table-wrapper">
+    <table class="fl-table" id="bt4">
+        <thead>
+        <tr>
+            <th>BT - 4</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tbody>
+    </table>
+  </div>
+  <div class="table-wrapper">
+    <table class="fl-table" id="bt5">
+        <thead>
+        <tr>
+            <th>BT - 5</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tbody>
+    </table>
+  </div>
+  <div class="table-wrapper">
+    <table class="fl-table" id="bt6">
+        <thead>
+        <tr>
+            <th>BT - 6</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tbody>
+    </table>
+  </div>
+      </div>
+      
+  
+    </div>  
+  </body>
+</html>
